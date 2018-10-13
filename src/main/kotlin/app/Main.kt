@@ -7,6 +7,7 @@ import io.javalin.rendering.JavalinRenderer
 import io.javalin.rendering.template.TemplateUtil.model
 
 fun main(args: Array<String>) {
+    // TODO: Replace .html extension with .rocker.html once Javalin updates
     JavalinRenderer.register(FileRenderer { filepath, model -> Rocker.template(filepath).bind(model).render().toString()}, ".html")
     val app = Javalin.create().start(7000)
     app.get("/hello") { ctx ->
