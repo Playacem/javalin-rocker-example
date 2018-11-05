@@ -9,8 +9,7 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        // TODO: Replace .html extension with .rocker.html once Javalin updates
-        JavalinRenderer.register((filepath, model) -> Rocker.template(filepath).bind(model).render().toString(),".html");
+        JavalinRenderer.register((filepath, model) -> Rocker.template(filepath).bind(model).render().toString(),".rocker.html");
         Javalin app = Javalin.create().start(7000);
         app.get("/hello", ctx -> {
             Map<String, Object> model = new HashMap<>();
