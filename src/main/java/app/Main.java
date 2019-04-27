@@ -14,10 +14,10 @@ public class Main {
         app.get("/hello", ctx -> {
             Map<String, Object> model = new HashMap<>();
             model.put("message", "Hello Rocker!");
-            ctx.render("templates/test.rocker.html", model);
+            ctx.render("templates/demo.rocker.html", model);
         });
         app.get("/hello2", ctx -> {
-            ctx.html(templates.test.template("Hi! I am using a compiler-checked version!").render().toString());
+            ctx.html(templates.demo.template("Hi! I am using a compiler-checked version!").render().toString());
         });
     }
 }

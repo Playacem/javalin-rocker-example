@@ -3,7 +3,6 @@ javalin-rocker-example
 
 This example shows how to add Rocker to a Javalin app.
 
-
 Adding Rocker as a dependency
 -----------------------------
 
@@ -27,6 +26,7 @@ For maven it looks something like this:
     <scope>provided</scope>
 </dependency>
 ```
+
 Replace ${rocker.version} with the current version of Rocker.
 See [Rocker on maven central](https://mvnrepository.com/artifact/com.fizzed/rocker-runtime) for more details.
 
@@ -34,3 +34,13 @@ See [Rocker on maven central](https://mvnrepository.com/artifact/com.fizzed/rock
 
 See the [official Rocker readme](https://github.com/fizzed/rocker#integrate-parsergenerator-in-build-tool) for details on how to do this.
 Rocker also supports Gradle.
+
+Using Kotlin with Rocker
+------------------------
+
+Add the following line to the sourceDirs configuration of the
+Kotlin Maven plugin:
+
+```xml
+<sourceDir>${project.basedir}/target/generated-sources/rocker</sourceDir>
+```
