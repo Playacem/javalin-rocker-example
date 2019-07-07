@@ -11,13 +11,16 @@ public class Main {
     public static void main(String[] args) {
         JavalinRenderer.register((filepath, model) -> Rocker.template(filepath).bind(model).render().toString(),".rocker.html");
         Javalin app = Javalin.create().start(7000);
+        app.get("/", ctx -> {
+            ctx.render("templates/root.rocker.html");
+        });
         app.get("/hello", ctx -> {
             Map<String, Object> model = new HashMap<>();
-            model.put("message", "Hello Rocker!");
+            model.put("message", "Hello Rocker from Java!");
             ctx.render("templates/demo.rocker.html", model);
         });
         app.get("/hello2", ctx -> {
-            ctx.html(templates.demo.template("Hi! I am using a compiler-checked version!").render().toString());
+            ctx.html(templates.demo.template("Hi from Java! I am using a compiler-checked version!").render().toString());
         });
     }
 }

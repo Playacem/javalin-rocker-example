@@ -9,10 +9,13 @@ import io.javalin.rendering.template.TemplateUtil.model
 fun main() {
     JavalinRenderer.register(FileRenderer { filepath, model -> Rocker.template(filepath).bind(model).render().toString()}, ".rocker.html")
     val app = Javalin.create().start(7000)
+    app.get("/") {ctx ->
+        ctx.render("templates/root.rocker.html")
+    }
     app.get("/hello") { ctx ->
-        ctx.render("templates/demo.rocker.html", model("message", "Hello Rocker!"))
+        ctx.render("templates/demo.rocker.html", model("message", "Hello Rocker from Kotlin!"))
     }
     app.get("/hello2") {ctx ->
-        ctx.html(templates.demo.template("Hi! I am using a compiler-checked version!").render().toString())
+        ctx.html(templates.demo.template("Hi from Kotlin! I am using a compiler-checked version!").render().toString())
     }
 }
