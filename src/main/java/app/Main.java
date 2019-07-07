@@ -2,14 +2,14 @@ package app;
 
 import com.fizzed.rocker.Rocker;
 import io.javalin.Javalin;
-import io.javalin.rendering.JavalinRenderer;
+import io.javalin.plugin.rendering.JavalinRenderer;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        JavalinRenderer.register((filepath, model) -> Rocker.template(filepath).bind(model).render().toString(),".rocker.html");
+        JavalinRenderer.register((filepath, model, ctx) -> Rocker.template(filepath).bind(model).render().toString(), ".rocker.html");
         Javalin app = Javalin.create().start(7000);
         app.get("/", ctx -> {
             ctx.render("templates/root.rocker.html");
