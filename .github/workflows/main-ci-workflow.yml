@@ -17,4 +17,4 @@ jobs:
       with:
         java-version: ${{ matrix.java_version }}
     - name: Build with Maven
-      run: mvn package --file pom.xml
+      run: ./mvnw package --file pom.xml
