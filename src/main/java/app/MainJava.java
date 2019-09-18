@@ -7,7 +7,7 @@ import io.javalin.plugin.rendering.JavalinRenderer;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Main {
+public class MainJava {
     public static void main(String[] args) {
         JavalinRenderer.register((filepath, model, ctx) -> Rocker.template(filepath).bind(model).render().toString(), ".rocker.html");
         Javalin app = Javalin.create().start(7000);
