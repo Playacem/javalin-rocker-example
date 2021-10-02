@@ -2,12 +2,9 @@ package app
 
 import com.fizzed.rocker.Rocker
 import io.javalin.Javalin
-import io.javalin.plugin.rendering.FileRenderer
 import io.javalin.plugin.rendering.JavalinRenderer
 import io.javalin.plugin.rendering.template.TemplateUtil
 import io.javalin.testtools.TestUtil
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import kotlin.test.Test
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
@@ -17,13 +14,13 @@ class MainTest {
     private val testApp by lazy { prepareApp() }
 
     private fun prepareApp(): Javalin {
-        JavalinRenderer.register({ filepath, model, _ -> Rocker.template(filepath).bind(model).render().toString() }, ".rhtml")
+        JavalinRenderer.register({ filepath, model, _ -> Rocker.template(filepath).bind(model).render().toString() }, ".html")
         val app = Javalin.create()
         app.get("/") { ctx ->
-            ctx.render("templates/root.rocker.rhtml")
+            ctx.render("templates/root.rocker.html")
         }
         app.get("/hello") { ctx ->
-            ctx.render("templates/demo.rocker.rhtml", TemplateUtil.model("message", "dynamic"))
+            ctx.render("templates/demo.rocker.html", TemplateUtil.model("message", "dynamic"))
         }
         app.get("/hello2") { ctx ->
             ctx.html(templates.demo.template("precompiled").render().toString())
@@ -39,7 +36,7 @@ class MainTest {
 
     @Test
     fun testDynamic() {
-        val template = Rocker.template("templates/demo.rocker.rhtml")
+        val template = Rocker.template("templates/demo.rocker.html")
                 .bind(mapOf("message" to "test-dyn"))
                 .render()
                 .toString()
