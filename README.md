@@ -50,5 +50,5 @@ Kotlin Maven plugin:
 Hints
 -----
 
-As of Javalin 4 there is no support for double extension files. A new extension `.rhtml` is used for the integration.
-For everything to work correctly template files have to end in with `.rocker.rhtml`.
+As of Javalin 4 there is no support for double extension files. The extension `.html` is used for the integration. This overrides Javalin's support for Thymeleaf.
+For everything to work correctly template files have to end in with `.rocker.html`.
