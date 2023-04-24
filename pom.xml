@@ -29,6 +29,12 @@
             <version>${rocker.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.fizzed</groupId>
+            <artifactId>rocker-compiler</artifactId>
+            <version>${rocker.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>${slf4j.version}</version>
@@ -59,6 +65,7 @@
             <groupId>io.javalin</groupId>
             <artifactId>javalin-testtools</artifactId>
             <version>${javalin.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -153,6 +160,21 @@
                     <javaVersion>1.8</javaVersion>
                     <templateDirectory>${project.basedir}/src/main/resources</templateDirectory>
                     <!-- See https://github.com/fizzed/rocker#integrate-parsergenerator-in-build-tool for more information -->
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>app.MainJava</mainClass>
                 </configuration>
             </plugin>
         </plugins>

@@ -1,6 +1,7 @@
 package app;
 
 import com.fizzed.rocker.Rocker;
+import com.fizzed.rocker.runtime.RockerRuntime;
 import io.javalin.Javalin;
 import io.javalin.plugin.rendering.JavalinRenderer;
 
@@ -9,7 +10,8 @@ import java.util.Map;
 
 public class MainJava {
     public static void main(String[] args) {
-        JavalinRenderer.register((filepath, model, ctx) -> Rocker.template(filepath).bind(model).render().toString(), ".rhtml");
+        RockerRuntime.getInstance().setReloading(true);
+        JavalinRenderer.register((filepath, model, ctx) -> Rocker.template(filepath).bind(model).render().toString(), ".html");
         Javalin app = Javalin.create().start(7000);
         app.get("/", ctx -> ctx.render("templates/root.rocker.html"));
         app.get("/hello", ctx -> {
